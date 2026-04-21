@@ -69,14 +69,14 @@ async function cargarPerros() {
 // Iniciar carga
 document.addEventListener('DOMContentLoaded', cargarPerros);
 
-// 🔥 UNIVERSAL para Perros + Gatos
+
 function calcularPesoPromedio(pesoStr) {
     if (!pesoStr) return 'N/D';
     const partes = pesoStr.split('-').map(p => parseFloat(p.trim())).filter(p => !isNaN(p));
     return partes.length ? (partes.reduce((a,b)=>a+b)/partes.length).toFixed(1) + 'kg' : 'N/D';
 }
 
-// 🔥 Eventos UNIVERSALES
+
 document.addEventListener('click', function(e) {
     // Expandir/Contraer (cierra otras)
     if (e.target.closest('.tarjeta-colapsable')) {
