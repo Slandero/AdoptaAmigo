@@ -50,10 +50,12 @@ async function cargarGatos() {
                     <!-- BOTÓN ADOPTAR -->
                     <div class="d-grid">
                         <button class="btn btn-success btn-lg shadow-lg adoptar-btn fw-bold fs-5 py-3" 
-                                data-name="${mascota.name}" 
-                                data-tipo="${contenedor.id.includes('perros') ? 'Perro' : 'Gato'}">
-                            ¡Quiero Adoptar a ${mascota.name}!
-                        </button>
+                        data-name="${mascota.name}" 
+                        data-tipo="${contenedor.id.includes('perros') ? 'Perro' : 'Gato'}"
+                        data-img="${imagenUrl}"
+                        data-raza="${mascota.name}">
+                    ¡Quiero Adoptar a ${mascota.name}!
+                    </button>
                     </div>
                 </div>
             </div>
@@ -77,24 +79,3 @@ function calcularPesoPromedio(pesoStr) {
 }
 
 
-document.addEventListener('click', function(e) {
-    // Expandir/Contraer (cierra otras)
-    if (e.target.closest('.tarjeta-colapsable')) {
-        const tarjeta = e.target.closest('.tarjeta-colapsable');
-        const target = document.querySelector(tarjeta.dataset.bsTarget);
-        const isExpanded = target.classList.contains('show');
-        
-        if (isExpanded) {
-            document.querySelectorAll('.collapse.show').forEach(col => {
-                if (col !== target) bootstrap.Collapse.getInstance(col)?.hide();
-            });
-        }
-    }
-    
-    // Adoptar
-    if (e.target.classList.contains('adoptar-btn')) {
-        const nombre = e.target.dataset.name;
-        const tipo = e.target.dataset.tipo;
-        alert(`🎉 ¡Felicidades! Has adoptado a ${nombre} ${tipo}\n\n¡Perfecto para tu familia! 🏠`);
-    }
-});
