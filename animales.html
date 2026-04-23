@@ -10,39 +10,115 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/perros.js"></script>
     <script src="js/gatos.js"></script>
+    <script src="js/filtros.js" defer></script>
+    <script src="js/detalles.js" defer></script>
     <script src="js/adopcion.js" defer></script>
+    <style>
+        .filtros-sticky {
+            position: sticky;
+            top: 1.5rem;
+            max-height: calc(100vh - 2rem);
+        }
+
+        .filtros-sidebar {
+            max-height: calc(100vh - 2rem);
+            overflow-y: auto;
+        }
+
+        @media (max-width: 991.98px) {
+            .filtros-sticky {
+                position: static;
+                max-height: none;
+            }
+
+            .filtros-sidebar {
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+    </style>
 </head>
 <body class="bg-light">
 
     <nav class="navbar navbar-dark bg-primary">
-        <div class="container">
-            <span class="navbar-brand fw-bold">🐾 Mascotas</span>
-            <a href="listaadopciones.html" class="btn btn-outline-light btn-sm">
+        <div class="container-fluid gap-2">
+            <a href="index.html" class="btn btn-sm fw-bold text-white bg-transparent border-0">🐾 AdoptaAmigo</a>
+            <a href="animales.html" class="btn btn-sm fw-bold text-white bg-transparent border-0 ms-auto">Nuestros Amigos</a>
+            <a href="listaadopciones.html" class="btn btn-sm fw-bold text-white bg-transparent border-0">
             Ver adopciones
         </a>
         </div>
     </nav>
 
 
-    <div class="container mt-5">
-        <h2 class="text-center mb-5 fw-bold text-primary">🐶 Perros Disponibles.</h2>
-        
-        <div id="contenedor-perros" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            <div class="text-center w-100 my-5">
-                <div class="spinner-border text-primary" role="status"></div>
-                <p>Cargando perritos...</p>
-            </div>
-        </div>
-    </div>
+    <div class="container-fluid mt-2 px-2 px-md-3 px-lg-4">
+        <h2 class="text-center mb-3 fw-bold text-primary">Animales Disponibles</h2>
 
-    <div class="container mt-5">
-        <h2 class="text-center mb-5 fw-bold text-primary">🙀 Gatos Disponibles.</h2>
-        
-        <div id="contenedor-gatos" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            <div class="text-center w-100 my-5">
-                <div class="spinner-border text-primary" role="status"></div>
-                <p>Cargando gatitos...</p>
-            </div>
+        <div class="row g-3 align-items-start">
+            <aside class="col-12 col-lg-3 col-xl-2 filtros-sticky">
+                <div class="card shadow-sm border-0 filtros-sidebar">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-primary mb-3">Filtrar mascotas</h5>
+                        <div class="d-grid gap-3">
+                            <div>
+                                <label for="filtro-tipo" class="form-label fw-semibold">Tipo de animal</label>
+                                <select id="filtro-tipo" class="form-select">
+                                    <option value="todos">Todos</option>
+                                    <option value="perro">Perros</option>
+                                    <option value="gato">Gatos</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="filtro-edad" class="form-label fw-semibold">Edad (vida promedio)</label>
+                                <select id="filtro-edad" class="form-select">
+                                    <option value="todas">Todas</option>
+                                    <option value="corta">Corta (hasta 10 anios)</option>
+                                    <option value="media">Media (11 a 14 anios)</option>
+                                    <option value="larga">Larga (15+ anios)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="filtro-peso" class="form-label fw-semibold">Peso</label>
+                                <select id="filtro-peso" class="form-select">
+                                    <option value="todos">Todos</option>
+                                    <option value="chico">Chico</option>
+                                    <option value="mediano">Mediano</option>
+                                    <option value="grande">Grande</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="filtro-origen" class="form-label fw-semibold">Origen</label>
+                                <input id="filtro-origen" type="text" class="form-control" placeholder="Ej: Egypt, United States...">
+                            </div>
+                            <button id="btn-limpiar-filtros" class="btn btn-outline-primary btn-sm">Limpiar filtros</button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="col-12 col-lg-9">
+                <div id="seccion-perros" class="mb-5">
+                    <h3 class="fw-bold text-primary mb-3">Perros</h3>
+                    <div id="contenedor-perros" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4">
+                        <div class="text-center w-100 my-5">
+                            <div class="spinner-border text-primary" role="status"></div>
+                            <p>Cargando perritos...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="seccion-gatos">
+                    <h3 class="fw-bold text-primary mb-3">Gatos</h3>
+                    <div id="contenedor-gatos" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4">
+                        <div class="text-center w-100 my-5">
+                            <div class="spinner-border text-primary" role="status"></div>
+                            <p>Cargando gatitos...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="paginacion-mascotas" class="mt-4"></div>
+            </section>
         </div>
     </div>
 

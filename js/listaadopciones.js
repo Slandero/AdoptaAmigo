@@ -38,7 +38,7 @@ class ListaAdopciones {
             contenedor.innerHTML = `
                 <div class="text-center text-muted py-5 w-100">
                     <p class="fs-5">Aún no hay adopciones registradas.</p>
-                    <a href="index.html" class="btn btn-primary mt-2">Ver mascotas disponibles</a>
+                    <a href="animales.html" class="btn btn-primary mt-2">Ver mascotas disponibles</a>
                 </div>`;
             return;
         }
